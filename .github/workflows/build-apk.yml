@@ -23,19 +23,27 @@ jobs:
       - name: Instalar dependências
         run: npm install
 
-      - name: Instalar plataforma Android do Capacitor
-        run: npm install @capacitor/android@^7.4.3
-
-      - name: Baixar Bíblia para funcionamento offline
+      - name: Instalar Android e TTS
         run: |
-          curl -L --fail --retry 3 \
+          npm install @capacitor/android@^7.4.3
+          npm install @capacitor-community/text-to-speech@^6.1.0
+
+      - name: Baixar Bíblia
+        run: |
+          curl -L --fail --retry 5 \
             -o public/bible.json \
             https://raw.githubusercontent.com/midvash/bible-data/main/versions/pt/almeida-livre/almeida-livre.json
+
+      - name: Verificar Bíblia
+        run: |
+          test -s public/bible.json
+          echo "Bíblia encontrada:"
+          wc -c public/bible.json
 
       - name: Criar versão web
         run: npm run build
 
-      - name: Criar projeto Android
+      - name: Criar Android
         run: npx cap add android
 
       - name: Sincronizar Capacitor
@@ -50,10 +58,10 @@ jobs:
       - name: Configurar Android
         uses: android-actions/setup-android@v3
 
-      - name: Aceitar licenças do Android
+      - name: Aceitar licenças
         run: yes | sdkmanager --licenses > /dev/null || true
 
-      - name: Instalar Android SDK
+      - name: Instalar SDK Android
         run: |
           sdkmanager "platform-tools"
           sdkmanager "platforms;android-35"
