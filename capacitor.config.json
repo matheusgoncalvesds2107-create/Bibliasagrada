@@ -1,0 +1,6 @@
+{
+  "appId":"br.com.webradiogoncalves.bibliasagrada",
+  "appName":"Bíblia Sagrada & Devocional Lite",
+  "webDir":"dist",
+  "bundledWebRuntime":false
+}
