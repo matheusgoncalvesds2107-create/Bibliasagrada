@@ -1,8 +1,0 @@
-{
-  "name":"biblia-sagrada-devocional-lite",
-  "version":"1.0.0",
-  "private":true,
-  "scripts":{"build":"vite build","dev":"vite","cap:sync":"npx cap sync android"},
-  "dependencies":{"@capacitor/core":"^7.4.3","@capacitor/local-notifications":"^7.0.1"},
-  "devDependencies":{"@capacitor/cli":"^7.4.3","vite":"^7.1.3"}
-}
